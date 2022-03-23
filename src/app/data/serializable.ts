@@ -2,7 +2,7 @@ import {JsonArray} from "@angular/compiler-cli/ngcc/src/packages/entry_point";
 
 export class Serializable {
 
-  fromJSON(json: JsonArray) {
+  fromJSON(json: JsonArray): this {
     for (const propName in json) {
       if (json.hasOwnProperty(propName)) {
         (this as any)[propName] = json[propName];
@@ -12,6 +12,6 @@ export class Serializable {
   }
 
   toJSON() {
-    return Object.assign({}, this);
+    return JSON.stringify(this);
   }
 }

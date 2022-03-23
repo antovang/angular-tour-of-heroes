@@ -1,39 +1,52 @@
-<div *ngIf="hero">
-  <h2>{{hero.name | uppercase}} Details</h2>
-  <div><span>id: </span>{{hero.id}}</div>
+<div class="container">
+  <div *ngIf="hero" class="flex-item">
+    <h2>{{hero.name | uppercase}} Details</h2>
+    <div><span>id: </span>{{hero.id}}</div>
 
-  <form [formGroup]="heroForm" (ngSubmit)="onSubmit()">
-    <div>
-      <label for="hero-name">Name : </label>
-      <input id="hero-name" formControlName="name" placeholder="Name"/>
-    </div>
-    <div>
-      <label for="hero-attaque">Attaque : </label>
-      <input id="hero-attaque" formControlName="attaque" placeholder="Attaque"/>
-    </div>
-    <div>
-      <label for="hero-esquive">Esquive : </label>
-      <input id="hero-esquive" formControlName="esquive" placeholder="Esquive"/>
-    </div>
-    <div>
-      <label for="hero-esquive">Dégats : </label>
-      <input id="hero-degats" formControlName="degats" placeholder="Dégats"/>
-    </div>
-    <div>
-      <label for="hero-pv">Points de Vie: </label>
-      <input id="hero-pv" formControlName="pv" placeholder="Points de vie"/>
-    </div>
-    <br />
-    <div>
-      Solde : {{soldeHero}}
-    </div>
-    <br />
-    <div *ngIf="heroForm.errors?.['maxScoreHero']">
-      Score supérieur à 40 points.
-    </div>
-    <label>Form Status : {{ heroForm.status }}</label>
-    <br />
-    <button type="submit" [disabled]="!heroForm.valid">Enregistrer</button>
-    <button type="button" (click)="goBack()">Go back</button>
-  </form>
+    <form [formGroup]="heroForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="hero-name">Name : </label>
+        <input id="hero-name" formControlName="name" placeholder="Name"/>
+      </div>
+      <div>
+        <label for="hero-attaque">Attaque : </label>
+        <input id="hero-attaque" formControlName="attaque" placeholder="Attaque"/>
+      </div>
+      <div>
+        <label for="hero-esquive">Esquive : </label>
+        <input id="hero-esquive" formControlName="esquive" placeholder="Esquive"/>
+      </div>
+      <div>
+        <label for="hero-esquive">Dégats : </label>
+        <input id="hero-degats" formControlName="degats" placeholder="Dégats"/>
+      </div>
+      <div>
+        <label for="hero-pv">Points de Vie : </label>
+        <input id="hero-pv" formControlName="pv" placeholder="Points de vie"/>
+      </div>
+      <div *ngIf="hero.weapon">
+        <label>Arme : {{hero.weapon.name}}</label>
+      </div>
+      <div>
+        <button type="button" (click)="choosingWeapon = true">Équiper une arme</button>
+      </div>
+      <br />
+      <div>
+        Solde : {{soldeHero}}
+      </div>
+      <br />
+      <div *ngIf="heroForm.errors?.['maxScoreHero']">
+        Score supérieur à 40 points.
+      </div>
+      <label>Form Status : {{ heroForm.status }}</label>
+      <br />
+      <button type="submit" [disabled]="!heroForm.valid">Enregistrer</button>
+      <button type="button" (click)="goBack()">Go back</button>
+    </form>
+  </div>
+
+  <div class="flex-item" *ngIf="choosingWeapon">
+    <app-choose-weapon [hero]=hero></app-choose-weapon>
+  </div>
 </div>
+

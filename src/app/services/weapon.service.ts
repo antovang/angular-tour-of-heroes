@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { Observable, of } from 'rxjs';
-import { Hero } from '../data/hero';
+import { Weapon } from '../data/weapon';
 import { MessageService } from './message.service';
 
 import {map} from "rxjs/operators";
@@ -17,29 +17,29 @@ import {
 @Injectable({
   providedIn: 'root'
 })
-export class HeroService {
+export class WeaponService {
 
   // URL d'accès aux documents sur Firebase
-  private static url = 'heroes';
+  private static url = 'weapons';
 
   constructor(private messageService : MessageService, private db: AngularFirestore) {
   }
 
   /**
-   * Récupération de la liste des héros
+   * Récupération de la liste d'armes
    */
-  getHeroes(): Observable<Hero[]> {
+  getWeapons(): Observable<Weapon[]> {
 
     //
-    this.messageService.add('HeroService: fetched heroes');
+    this.messageService.add('WeaponServices: fetched weapons');
 
     //
-    return this.db.collection<JsonArray>(HeroService.url)
+    return this.db.collection<JsonArray>(WeaponService.url)
       .snapshotChanges()
       .pipe(
         map(documents => {
           return documents.map(document => {
-            return this.transformDocumentChangeActionToHero(document);
+            return this.transformDocumentChangeActionToWeapon(document);
           });
         })
       );
@@ -48,18 +48,18 @@ export class HeroService {
   /**
    * Récupération des 3 premiers héros
    */
-  getHeroesTop3(): Observable<Hero[]> {
+  getWeaponsTop3(): Observable<Weapon[]> {
 
     //
     this.messageService.add('HeroService: fetched heroes');
 
     //
-    return this.db.collection<JsonArray>(HeroService.url, ref => ref.limit(3))
+    return this.db.collection<JsonArray>(WeaponService.url, ref => ref.limit(3))
       .snapshotChanges()
       .pipe(
         map(documents => {
           return documents.map(document => {
-            return this.transformDocumentChangeActionToHero(document);
+            return this.transformDocumentChangeActionToWeapon(document);
           });
         })
       );
@@ -70,60 +70,61 @@ export class HeroService {
    * @param id
    * @private
    */
-  private getHeroDocument(id: string): AngularFirestoreDocument<JsonArray> {
+  private getWeaponDocument(id: string): AngularFirestoreDocument<JsonArray> {
 
     // return document
-    return this.db.doc<JsonArray>(HeroService.url + `/` + id);
+    return this.db.doc<JsonArray>(WeaponService.url + `/` + id);
   }
 
   /**
    * Récupération d'un héro spécifique à l'aide de son id
    * @param id
    */
-  getHero(id: string): Observable<Hero | undefined> {
+  getWeapon(id: string): Observable<Weapon | undefined> {
 
     //
-    this.messageService.add(`HeroService: fetched hero id=${id}`);
+    this.messageService.add(`WeaponService: fetched weapon id=${id}`);
 
     // Return hero observable
-    return this.getHeroDocument(id).snapshotChanges()
+    return this.getWeaponDocument(id).snapshotChanges()
       .pipe(
         map(document => {
-          return this.transformDocumentSnapshotToHero(id, document);
+          return this.transformDocumentSnapshotToWeapon(id, document);
         })
       );
   }
 
   /**
-   * Ajout d'un héro sur Firebase
-   * @param hero
+   * Ajout d'une arme sur Firebase
+   * @param weapon
    */
-  addHero(hero: Hero) {
+  addWeapon(weapon: Weapon) {
 
-    this.db.collection(HeroService.url).add(hero.toJSON());
+    this.db.collection(WeaponService.url).add(weapon.toJSON());
     //this.db.collection(HeroService.url).add(JSON.stringify(hero));
     //this.db.collection<JSON>(HeroService.url).add(Object.assign({}, hero));
   }
 
   /**
    * Modification du héro sur Firebase
-   * @param hero
+   * @param weapon
    */
-  updateHero(hero: Hero) {
+  updateWeapon(weapon: Weapon) {
 
     // Update document
-    if (hero.id != undefined) {
-      this.getHeroDocument(hero.id).update(hero.toJSON());
+    if (weapon.id != undefined) {
+      this.getWeaponDocument(weapon.id).update(weapon.toJSON());
     }
+
     //this.getHeroDocument(id).update(JSON.stringify(hero));
     //this.getHeroDocument(id).update(Object.assign({}, hero));
   }
 
-  deleteHero(hero: Hero) {
+  deleteWeapon(weapon: Weapon) {
 
     // Delete the document
-    if (hero.id != undefined) {
-      this.getHeroDocument(hero.id).delete();
+    if (weapon.id != undefined) {
+      this.getWeaponDocument(weapon.id).delete();
     }
   }
 
@@ -133,38 +134,38 @@ export class HeroService {
    * @param a
    * @private
    */
-  private transformDocumentChangeActionToHero(a: DocumentChangeAction<JsonArray>): Hero {
+  private transformDocumentChangeActionToWeapon(a: DocumentChangeAction<JsonArray>): Weapon {
 
     // Get document data
     const data = a.payload.doc.data();
 
     // New Hero
-    const hero = new Hero().fromJSON(data);
+    const weapon = new Weapon().fromJSON(data);
 
     // Get document id
     const id = a.payload.doc.id;
-    hero.id = id;
+    weapon.id = id;
 
-    return hero;
+    return weapon;
   }
 
   /**
-   * Transformation du document reçu en un objet de type Hero
+   * Transformation du document reçu en un objet de type Weapon
    * @private
    */
-  private transformDocumentSnapshotToHero(id: string, document: Action<DocumentSnapshot<JsonArray>>): Hero | undefined {
+  private transformDocumentSnapshotToWeapon(id: string, document: Action<DocumentSnapshot<JsonArray>>): Weapon | undefined {
 
     // Get document data
     const data = document.payload.data();
 
-    // New Hero
-    let hero;
+    // New Weapon
+    let weapon;
     if (data != undefined) {
-      hero = new Hero().fromJSON(data);
-      hero.id = id;
+      weapon = new Weapon().fromJSON(data!);
+      weapon.id = id;
     }
 
     // Use spread operator to add the id to the document data
-    return hero;
+    return weapon;
   }
 }

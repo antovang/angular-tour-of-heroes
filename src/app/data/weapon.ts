@@ -1,19 +1,17 @@
 import {Serializable} from "./serializable";
-import {Weapon} from "./weapon";
 import {JsonArray} from "@angular/compiler-cli/ngcc/src/packages/entry_point";
+import {Hero} from "./hero";
 
-export class Hero extends Serializable  {
-  private _id? : string;
-  private _name? : string;
-  private _attaque? : number;
-  private _esquive? : number;
-  private _degats? : number;
-  private _pv? : number;
-  private _weapon? : Weapon;
+export class Weapon extends Serializable {
+  private _id?: string;
+  private _name?: string;
+  private _attaque?: number;
+  private _esquive?: number;
+  private _degats?: number;
+  private _pv?: number;
 
   constructor() {
     super();
-    this.weapon = new Weapon();
   }
 
   get id(): string {
@@ -64,23 +62,13 @@ export class Hero extends Serializable  {
     this._pv = value;
   }
 
-  get weapon(): Weapon {
-    return <Weapon>this._weapon;
-  }
-
-  set weapon(value: Weapon) {
-    this._weapon = value;
-  }
-
-  override toJSON() {
+  override toJSON(){
     return JSON.stringify({
       _name: this.name,
       _attaque: this.attaque,
       _esquive: this.esquive,
       _degats: this.degats,
       _pv: this.pv,
-      _weapon: this.weapon.toJSON()
     });
   }
 }
-

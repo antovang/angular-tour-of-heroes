@@ -22,13 +22,3 @@ button:disabled {
   color: #ccc;
   cursor: auto;
 }
-
-.container{
-  display: flex;
-  width: 100%;
-}
-
-.container .flex-item{
-  width: 50%;
-}
-

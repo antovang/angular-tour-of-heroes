@@ -5,7 +5,8 @@ import { Location } from '@angular/common';
 import { Validators } from '@angular/forms';
 import { HeroService } from '../services/hero.service';
 import {FormControl, FormGroup} from "@angular/forms";
-import {maxScoreHero} from "../utilitaire/hero-validator.directive";
+import {maxScoreHero} from "../utilitaire/validator.directive";
+import {first} from "rxjs";
 
 @Component({
   selector: 'app-hero-detail',
@@ -15,14 +16,15 @@ import {maxScoreHero} from "../utilitaire/hero-validator.directive";
 export class HeroDetailComponent implements OnInit {
 
   @Input() hero?: Hero;
+  choosingWeapon? : boolean;
 
-  //On crée un formGroup nous permettant d'avoir de formulaire réactifs utilisant des validators pour chaque champ
+  //On crée un formGroup nous permettant d'avoir des formulaire réactifs utilisant des validators pour chaque champ
   heroForm = new FormGroup({
     name: new FormControl('', [Validators.required,Validators.minLength(1)]),
-    attaque: new FormControl('',[Validators.required,Validators.min(1)]),
-    esquive: new FormControl('',[Validators.required,Validators.min(1)]),
-    degats: new FormControl('',[Validators.required,Validators.min(1)]),
-    pv: new FormControl('',[Validators.required,Validators.min(1)]),
+    attaque: new FormControl('',[Validators.required,Validators.min(0)]),
+    esquive: new FormControl('',[Validators.required,Validators.min(0)]),
+    degats: new FormControl('',[Validators.required,Validators.min(0)]),
+    pv: new FormControl('',[Validators.required,Validators.min(0)]),
   },
   {
     //On applique un custom validator pour contrôler le nombre de points
@@ -51,7 +53,7 @@ export class HeroDetailComponent implements OnInit {
 
   getHero(): void {
     const id = String(this.route.snapshot.paramMap.get('id'));
-    this.heroService.getHero(id)
+    this.heroService.getHero(id).pipe(first())
       .subscribe(hero => {
         this.hero = hero;
         this.populateForm();
@@ -85,11 +87,9 @@ export class HeroDetailComponent implements OnInit {
     if(!this.heroForm.invalid){
       this.updateHero();
     }
-    console.warn(this.hero);
   }
 
   goBack(): void {
     this.location.back();
   }
-
 }
