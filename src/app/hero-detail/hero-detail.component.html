@@ -27,7 +27,8 @@
         <div *ngIf="hero.weapon != undefined" class="weapon">
           <img src="{{hero.weapon.image}}">
         </div>
-        <button type="button"
+
+        <button type="button" mat-raised-button
                 (click)="choosingWeapon = !choosingWeapon">
           Équiper une arme
         </button>
@@ -37,7 +38,7 @@
         <img src="/assets/img/error.png" style="width: 200px">
       </div>
       <div class="submit">
-        <button type="submit" [disabled]="!heroForm.valid">Enregistrer</button>
+        <button type="submit" [disabled]="!heroForm.valid" mat-raised-button color="primary">Enregistrer</button>
       </div>
     </form>
   </div>

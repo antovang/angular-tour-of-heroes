@@ -17,6 +17,7 @@ import { WeaponsComponent } from './weapons/weapons.component';
 import { WeaponDetailComponent } from './weapon-detail/weapon-detail.component';
 import { ChooseWeaponComponent } from './choose-weapon/choose-weapon.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   declarations: [
@@ -29,17 +30,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     WeaponDetailComponent,
     ChooseWeaponComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        FormsModule,
-        ReactiveFormsModule,
-        //provideFirebaseApp(() => initializeApp(environment.firebase)),
-        //provideFirestore(() => getFirestore())
-        AngularFireModule.initializeApp(environment.firebase),
-        AngularFirestoreModule,
-        BrowserAnimationsModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    //provideFirebaseApp(() => initializeApp(environment.firebase)),
+    //provideFirestore(() => getFirestore())
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    BrowserAnimationsModule,
+    MatButtonModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
