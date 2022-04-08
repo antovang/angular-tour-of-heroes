@@ -1,18 +1,58 @@
 /* HeroDetailComponent's private CSS styles */
+.container{
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  height: calc(100% - 50px);
+  position: relative;
+}
+
+.container .flex-item{
+  height: 100%;
+}
+
+.container .flex-item:nth-of-type(1){
+  width: 45%;
+}
+
+.container .flex-item:nth-of-type(2){
+  width: 50%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+form div{
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+}
+
 label {
   color: #435960;
   font-weight: bold;
 }
-input {
+input{
   font-size: 1em;
   padding: .5rem;
+  border: none;
+  border-bottom: 2px solid #eee;
 }
+
+div.submit{
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  max-width: fit-content;
+}
+
 button {
-  margin-top: 20px;
   background-color: #eee;
   padding: 1rem;
   border-radius: 4px;
   font-size: 1rem;
+  width: fit-content;
 }
 button:hover {
   background-color: #cfd8dc;
@@ -23,20 +63,6 @@ button:disabled {
   cursor: auto;
 }
 
-.container{
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
-
-.container .flex-item:nth-of-type(1){
-  width: 50%;
-}
-
-.container .flex-item:nth-of-type(2){
-  width: 40%;
-}
-
 div.personnage{
   width: 100%;
   max-width: 100%;
@@ -45,11 +71,11 @@ div.personnage{
 }
 
 div.personnage img{
-  max-width: 480px;
-  max-height: 673px;
+  max-width: 450px;
+  max-height: 650px;
 }
 
-div.weaponContainer{
+div.popup{
   position: fixed;
   top: 50%;
   left: 50%;
@@ -62,5 +88,32 @@ div.weapon img{
   max-width: 150px;
   height: 150px;
   max-height: 150px;
+}
+
+div.aside{
+  position: absolute;
+  width: 120px;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  justify-content: space-around;
+  background-color: #eee;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+div.aside div{
+  width: 50%;
+  display: flex;
+}
+
+div.aside img{
+  width: 100%;
+}
+
+div.aside div span{
+  font-size: 1.5em;
+  font-weight: bold;
+  height: fit-content;
 }
 

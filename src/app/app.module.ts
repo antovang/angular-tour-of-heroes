@@ -16,6 +16,7 @@ import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
 import { WeaponsComponent } from './weapons/weapons.component';
 import { WeaponDetailComponent } from './weapon-detail/weapon-detail.component';
 import { ChooseWeaponComponent } from './choose-weapon/choose-weapon.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { ChooseWeaponComponent } from './choose-weapon/choose-weapon.component';
         //provideFirebaseApp(() => initializeApp(environment.firebase)),
         //provideFirestore(() => getFirestore())
         AngularFireModule.initializeApp(environment.firebase),
-        AngularFirestoreModule
+        AngularFirestoreModule,
+        BrowserAnimationsModule
     ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,59 +1,62 @@
 <div class="container">
   <div *ngIf="hero" class="flex-item">
-    <h2>{{hero.name | uppercase}} Details</h2>
-    <div><span>id: </span>{{hero.id}}</div>
+    <h2>{{hero.name | uppercase}}</h2>
 
     <form [formGroup]="heroForm" (ngSubmit)="onSubmit()">
       <div>
-        <label for="hero-name">Name : </label>
+        <label for="hero-name">Name </label>
         <input id="hero-name" formControlName="name" placeholder="Name"/>
       </div>
       <div>
-        <label for="hero-attaque">Attaque : </label>
+        <label for="hero-attaque">Attaque </label>
         <input id="hero-attaque" formControlName="attaque" placeholder="Attaque"/>
       </div>
       <div>
-        <label for="hero-esquive">Esquive : </label>
+        <label for="hero-esquive">Esquive </label>
         <input id="hero-esquive" formControlName="esquive" placeholder="Esquive"/>
       </div>
       <div>
-        <label for="hero-esquive">Dégats : </label>
+        <label for="hero-esquive">Dégats </label>
         <input id="hero-degats" formControlName="degats" placeholder="Dégats"/>
       </div>
       <div>
-        <label for="hero-pv">Points de Vie : </label>
+        <label for="hero-pv">Points de Vie </label>
         <input id="hero-pv" formControlName="pv" placeholder="Points de vie"/>
       </div>
-      <div *ngIf="hero.weapon != undefined" class="weapon">
-        <img src="{{hero.weapon.image}}">
-      </div>
       <div>
-        <button id="chooseWpnBtn" type="button"
+        <div *ngIf="hero.weapon != undefined" class="weapon">
+          <img src="{{hero.weapon.image}}">
+        </div>
+        <button type="button"
                 (click)="choosingWeapon = !choosingWeapon">
           Équiper une arme
         </button>
       </div>
       <br>
-      <div>
-        Solde : {{soldeHero}}
+      <div *ngIf="heroForm.errors?.['maxScoreHero']" class="popup">
+        <img src="/assets/img/error.png" style="width: 200px">
       </div>
-      <br>
-      <div *ngIf="heroForm.errors?.['maxScoreHero']">
-        Score supérieur à 40 points.
+      <div class="submit">
+        <button type="submit" [disabled]="!heroForm.valid">Enregistrer</button>
       </div>
-      <label>Form Status : {{ heroForm.status }}</label>
-      <br>
-      <button type="submit" [disabled]="!heroForm.valid">Enregistrer</button>
-      <button type="button" (click)="goBack()">Go back</button>
     </form>
   </div>
 
-  <div class="flex-item personnage">
-    <img *ngIf="hero?.image" src="{{hero?.image}}">
+  <div class="flex-item personnage" *ngIf="hero?.image">
+    <img src="{{hero?.image}}">
   </div>
 
-  <div *ngIf="choosingWeapon" class="weaponContainer">
+  <div *ngIf="choosingWeapon" class="weaponContainer popup">
     <app-choose-weapon [hero]=hero (click)="choosingWeapon = !choosingWeapon"></app-choose-weapon>
+  </div>
+
+  <div class="aside">
+    <div>
+      <span>{{soldeHero}}</span>
+    </div>
+    <div>
+      <img src="/assets/img/vbucks.png">
+    </div>
   </div>
 </div>
 

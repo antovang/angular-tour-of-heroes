@@ -90,8 +90,4 @@ export class HeroDetailComponent implements OnInit {
       this.updateHero();
     }
   }
-
-  goBack(): void {
-    this.location.back();
-  }
 }
