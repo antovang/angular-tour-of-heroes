@@ -11,7 +11,7 @@ export class Serializable {
     return this;
   }
 
-  toJSON() {
-    return JSON.stringify(this);
+  toJSON(): any {
+    return Object.assign({}, this);
   }
 }

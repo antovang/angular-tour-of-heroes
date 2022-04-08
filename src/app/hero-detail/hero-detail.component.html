@@ -24,29 +24,36 @@
         <label for="hero-pv">Points de Vie : </label>
         <input id="hero-pv" formControlName="pv" placeholder="Points de vie"/>
       </div>
-      <div *ngIf="hero.weapon">
-        <label>Arme : {{hero.weapon.name}}</label>
+      <div *ngIf="hero.weapon != undefined" class="weapon">
+        <img src="{{hero.weapon.image}}">
       </div>
       <div>
-        <button type="button" (click)="choosingWeapon = true">Équiper une arme</button>
+        <button id="chooseWpnBtn" type="button"
+                (click)="choosingWeapon = !choosingWeapon">
+          Équiper une arme
+        </button>
       </div>
-      <br />
+      <br>
       <div>
         Solde : {{soldeHero}}
       </div>
-      <br />
+      <br>
       <div *ngIf="heroForm.errors?.['maxScoreHero']">
         Score supérieur à 40 points.
       </div>
       <label>Form Status : {{ heroForm.status }}</label>
-      <br />
+      <br>
       <button type="submit" [disabled]="!heroForm.valid">Enregistrer</button>
       <button type="button" (click)="goBack()">Go back</button>
     </form>
   </div>
 
-  <div class="flex-item" *ngIf="choosingWeapon">
-    <app-choose-weapon [hero]=hero></app-choose-weapon>
+  <div class="flex-item personnage">
+    <img *ngIf="hero?.image" src="{{hero?.image}}">
+  </div>
+
+  <div *ngIf="choosingWeapon" class="weaponContainer">
+    <app-choose-weapon [hero]=hero (click)="choosingWeapon = !choosingWeapon"></app-choose-weapon>
   </div>
 </div>
 

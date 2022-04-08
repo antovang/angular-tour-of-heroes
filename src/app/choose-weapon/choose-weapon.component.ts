@@ -33,8 +33,9 @@ export class ChooseWeaponComponent implements OnInit {
 
   chooseWeapon(weapon : Weapon) : void{
     this.selectedWeapon = weapon;
-    if(this.hero){
+    if(this.hero) {
       this.hero.weapon = this.selectedWeapon;
+      this.hero.weaponId = this.selectedWeapon.id;
     }
   }
 

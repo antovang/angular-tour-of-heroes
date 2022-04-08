@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import {Injectable, Input} from '@angular/core';
 
-import { Observable, of } from 'rxjs';
+import {first, Observable, of} from 'rxjs';
 import { Hero } from '../data/hero';
 import { MessageService } from './message.service';
 
@@ -13,6 +13,7 @@ import {
   DocumentChangeAction,
   DocumentSnapshot
 } from "@angular/fire/compat/firestore";
+import {WeaponService} from "./weapon.service";
 
 @Injectable({
   providedIn: 'root'
@@ -22,8 +23,9 @@ export class HeroService {
   // URL d'accès aux documents sur Firebase
   private static url = 'heroes';
 
-  constructor(private messageService : MessageService, private db: AngularFirestore) {
-  }
+  constructor(private messageService : MessageService,
+              private db: AngularFirestore,
+              private weaponService : WeaponService){}
 
   /**
    * Récupération de la liste des héros
@@ -158,10 +160,17 @@ export class HeroService {
     const data = document.payload.data();
 
     // New Hero
-    let hero;
+    let hero : Hero | undefined;
     if (data != undefined) {
       hero = new Hero().fromJSON(data);
       hero.id = id;
+
+      this.weaponService.getWeapon(hero.weaponId)
+        .pipe(first())
+        .subscribe(weapon => {
+          if(hero != undefined)
+            hero.weapon = weapon;
+        });
     }
 
     // Use spread operator to add the id to the document data

@@ -9,6 +9,7 @@ export class Weapon extends Serializable {
   private _esquive?: number;
   private _degats?: number;
   private _pv?: number;
+  private _image?: string;
 
   constructor() {
     super();
@@ -62,13 +63,22 @@ export class Weapon extends Serializable {
     this._pv = value;
   }
 
+  get image(): string {
+    return <string>this._image;
+  }
+
+  set image(value: string) {
+    this._image = value;
+  }
+
   override toJSON(){
-    return JSON.stringify({
+    return Object.assign({},{
       _name: this.name,
       _attaque: this.attaque,
       _esquive: this.esquive,
       _degats: this.degats,
       _pv: this.pv,
+      _image: this.image,
     });
   }
 }

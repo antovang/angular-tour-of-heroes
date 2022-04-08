@@ -7,6 +7,7 @@ import { HeroService } from '../services/hero.service';
 import {FormControl, FormGroup} from "@angular/forms";
 import {maxScoreHero} from "../utilitaire/validator.directive";
 import {first} from "rxjs";
+import {WeaponService} from "../services/weapon.service";
 
 @Component({
   selector: 'app-hero-detail',
@@ -34,6 +35,7 @@ export class HeroDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private heroService: HeroService,
+    private weaponService: WeaponService,
     private location: Location
   ) {}
 

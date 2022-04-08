@@ -23,7 +23,8 @@ export class WeaponDetailComponent implements OnInit {
       attaque: new FormControl('',[Validators.required,Validators.min(-5),Validators.max(5)]),
       esquive: new FormControl('',[Validators.required,Validators.min(-5),Validators.max(5)]),
       degats: new FormControl('',[Validators.required,Validators.min(-5),Validators.max(5)]),
-      pv: new FormControl('',[Validators.required,Validators.min(-5),Validators.max(5)])
+      pv: new FormControl('',[Validators.required,Validators.min(-5),Validators.max(5)]),
+      image: new FormControl('',[Validators.required,Validators.minLength(1)])
     },
     {
       //On applique un custom validator pour contrôler le nombre de points
@@ -46,7 +47,8 @@ export class WeaponDetailComponent implements OnInit {
       attaque: this.weapon?.attaque,
       esquive: this.weapon?.esquive,
       degats: this.weapon?.degats,
-      pv: this.weapon?.pv
+      pv: this.weapon?.pv,
+      image: this.weapon?.image
     });
   }
 
@@ -77,6 +79,7 @@ export class WeaponDetailComponent implements OnInit {
     this.weapon!.esquive = this.weaponForm.value.esquive;
     this.weapon!.degats = this.weaponForm.value.degats;
     this.weapon!.pv = this.weaponForm.value.pv;
+    this.weapon!.image = this.weaponForm.value.image;
 
     this.weaponService.updateWeapon(this.weapon!);
   }

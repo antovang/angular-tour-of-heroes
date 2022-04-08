@@ -1,7 +1,7 @@
 <ul class="weapons">
   <li *ngFor="let weapon of weapons">
     <div (click)="chooseWeapon(weapon)" >
-      {{weapon.name}}
+      <img src="{{weapon.image}}">
     </div>
   </li>
 </ul>
