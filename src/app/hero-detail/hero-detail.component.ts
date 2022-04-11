@@ -1,13 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Hero } from '../data/hero';
 import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
 import { Validators } from '@angular/forms';
 import { HeroService } from '../services/hero.service';
 import {FormControl, FormGroup} from "@angular/forms";
 import {maxScoreHero} from "../utilitaire/validator.directive";
 import {first} from "rxjs";
-import {WeaponService} from "../services/weapon.service";
 
 @Component({
   selector: 'app-hero-detail',
@@ -17,9 +15,10 @@ import {WeaponService} from "../services/weapon.service";
 export class HeroDetailComponent implements OnInit {
 
   @Input() hero?: Hero;
-  choosingWeapon? : boolean;
+  public choosingWeapon? : boolean;
+  public static SOLDE = 40;
 
-  //On crée un formGroup nous permettant d'avoir des formulaire réactifs utilisant des validators pour chaque champ
+  //On crée un formGroup nous permettant d'avoir des formulaires réactifs utilisant des validators pour chaque champ
   heroForm = new FormGroup({
     name: new FormControl('', [Validators.required,Validators.minLength(1)]),
     attaque: new FormControl('',[Validators.required,Validators.min(0)]),
@@ -34,9 +33,7 @@ export class HeroDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private heroService: HeroService,
-    private weaponService: WeaponService,
-    private location: Location
+    private heroService: HeroService
   ) {}
 
   ngOnInit(): void {
@@ -70,7 +67,7 @@ export class HeroDetailComponent implements OnInit {
     const pv = parseInt(this.heroForm.value.pv);
     const sum = attaque + esquive + pv + degats;
 
-    return 40 - sum;
+    return HeroDetailComponent.SOLDE - sum;
   }
 
   updateHero(): void{

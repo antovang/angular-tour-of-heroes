@@ -1,43 +1,44 @@
-<div *ngIf="weapon">
-  <h2>{{weapon.name | uppercase}} Details</h2>
-  <div><span>id: </span>{{weapon.id}}</div>
+<div class="container">
+  <div *ngIf="weapon" class="flex-item">
+    <h2>{{weapon.name | uppercase}} Details</h2>
+    <form [formGroup]="weaponForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="weapon-name">Name : </label>
+        <input id="weapon-name" formControlName="name" placeholder="Name"/>
+      </div>
+      <div>
+        <label for="weapon-attaque">Attaque : </label>
+        <input id="weapon-attaque" formControlName="attaque" placeholder="Attaque"/>
+      </div>
+      <div>
+        <label for="weapon-esquive">Esquive : </label>
+        <input id="weapon-esquive" formControlName="esquive" placeholder="Esquive"/>
+      </div>
+      <div>
+        <label for="weapon-esquive">Dégats : </label>
+        <input id="weapon-degats" formControlName="degats" placeholder="Dégats"/>
+      </div>
+      <div>
+        <label for="weapon-pv">Points de Vie : </label>
+        <input id="weapon-pv" formControlName="pv" placeholder="Points de vie"/>
+      </div>
+      <br />
+      <div class="submit">
+        <button type="submit" [disabled]="!weaponForm.valid" mat-raised-button color="primary">Enregistrer</button>
+      </div>
+    </form>
+  </div>
 
-  <form [formGroup]="weaponForm" (ngSubmit)="onSubmit()">
+  <div class="flex-item weapon" *ngIf="weapon?.image">
+    <img src="{{weapon?.image}}">
+  </div>
+
+  <div class="aside">
     <div>
-      <label for="weapon-name">Name : </label>
-      <input id="weapon-name" formControlName="name" placeholder="Name"/>
-    </div>
-    <div>
-      <label for="weapon-attaque">Attaque : </label>
-      <input id="weapon-attaque" formControlName="attaque" placeholder="Attaque"/>
-    </div>
-    <div>
-      <label for="weapon-esquive">Esquive : </label>
-      <input id="weapon-esquive" formControlName="esquive" placeholder="Esquive"/>
+      <span>{{soldeWeapon}}</span>
     </div>
     <div>
-      <label for="weapon-esquive">Dégats : </label>
-      <input id="weapon-degats" formControlName="degats" placeholder="Dégats"/>
+      <img src="/assets/img/vbucks.png">
     </div>
-    <div>
-      <label for="weapon-pv">Points de Vie : </label>
-      <input id="weapon-pv" formControlName="pv" placeholder="Points de vie"/>
-    </div>
-    <div>
-      <label for="weapon-image">URL Visuel : </label>
-      <input id="weapon-image" formControlName="image" placeholder="Source image"/>
-    </div>
-    <br />
-    <div>
-      Solde : {{soldeWeapon}}
-    </div>
-    <br />
-    <div *ngIf="weaponForm.errors?.['maxScoreWeapon']">
-      Score != 0
-    </div>
-    <label>Form Status : {{ weaponForm.status }}</label>
-    <br />
-    <button type="submit" [disabled]="!weaponForm.valid">Enregistrer</button>
-    <button type="button" (click)="goBack()">Go back</button>
-  </form>
+  </div>
 </div>
