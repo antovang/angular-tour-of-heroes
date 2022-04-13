@@ -1,6 +1,6 @@
 <div class="container">
   <div *ngIf="weapon" class="flex-item">
-    <h2>{{weapon.name | uppercase}} Details</h2>
+    <h2>{{weapon.name | uppercase}}</h2>
     <form [formGroup]="weaponForm" (ngSubmit)="onSubmit()">
       <div>
         <label for="weapon-name">Name : </label>
