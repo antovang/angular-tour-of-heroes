@@ -6,6 +6,7 @@ import { HeroService } from '../services/hero.service';
 import {FormControl, FormGroup} from "@angular/forms";
 import {maxScoreHero} from "../utilitaire/validator.directive";
 import {first} from "rxjs";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-hero-detail',
@@ -33,7 +34,8 @@ export class HeroDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private heroService: HeroService
+    private heroService: HeroService,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -86,5 +88,10 @@ export class HeroDetailComponent implements OnInit {
     if(!this.heroForm.invalid){
       this.updateHero();
     }
+    this.goBack();
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 }

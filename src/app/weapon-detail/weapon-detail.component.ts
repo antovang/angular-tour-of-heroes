@@ -86,7 +86,7 @@ export class WeaponDetailComponent implements OnInit {
     if(!this.weaponForm.invalid){
       this.updateWeapon();
     }
-    console.warn(this.weapon);
+    this.goBack();
   }
 
   goBack(): void {
