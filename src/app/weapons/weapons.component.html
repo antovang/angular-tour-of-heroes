@@ -73,5 +73,13 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+
+  <div class="aside">
+    <a routerLink="/newWeapon/">
+      <button mat-fab color="primary">
+        <mat-icon>add</mat-icon>
+      </button>
+    </a>
+  </div>
 </div>
 

@@ -32,3 +32,9 @@ table{
   margin: 0px 7px;
 }
 
+.aside{
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+

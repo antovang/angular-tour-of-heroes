@@ -34,7 +34,7 @@
         </button>
       </div>
       <br>
-      <div *ngIf="!heroForm.valid" class="popup">
+      <div *ngIf="heroForm.errors?.['maxScoreHero'] || !heroForm.valid" class="popup">
         <img src="/assets/img/error.png" style="width: 200px">
       </div>
       <div class="submit">
@@ -43,8 +43,8 @@
     </form>
   </div>
 
-  <div class="flex-item personnage" *ngIf="hero?.image">
-    <img src="{{hero?.image}}">
+  <div class="flex-item personnage">
+    <img src="{{hero?.image}}" *ngIf="hero?.image">
   </div>
 
   <div *ngIf="choosingWeapon" class="weaponContainer popup">

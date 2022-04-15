@@ -97,7 +97,7 @@ export class Hero extends Serializable  {
       _degats: this.degats,
       _pv: this.pv,
       _weaponId : this.weaponId ?? '',
-      _image : this.image
+      _image : this.image ?? ''
     });
   }
 }

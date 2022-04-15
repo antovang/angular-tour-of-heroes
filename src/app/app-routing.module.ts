@@ -10,8 +10,10 @@ import { WeaponDetailComponent } from "./weapon-detail/weapon-detail.component";
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
-  { path: 'detail/:id', component: HeroDetailComponent },
+  { path: 'detailHero/:id', component: HeroDetailComponent },
   { path: 'detailWeapon/:id', component: WeaponDetailComponent },
+  { path: 'newHero', component: HeroDetailComponent },
+  { path: 'newWeapon', component: WeaponDetailComponent },
   { path: 'heroes', component: HeroesComponent },
   { path: 'weapons', component: WeaponsComponent }
 ];

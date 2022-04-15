@@ -78,7 +78,7 @@ export class Weapon extends Serializable {
       _esquive: this.esquive,
       _degats: this.degats,
       _pv: this.pv,
-      _image: this.image,
+      _image: this.image ?? '',
     });
   }
 }

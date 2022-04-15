@@ -48,6 +48,15 @@ input{
   border-bottom: 2px solid #eee;
 }
 
+div.popup{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  align-items: center;
+}
+
 div.submit{
   position: absolute;
   bottom: 10px;

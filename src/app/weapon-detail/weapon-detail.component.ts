@@ -37,7 +37,11 @@ export class WeaponDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getWeapon();
+    if(this.route.snapshot.paramMap.has('id')) {
+      this.getWeapon();
+    }else{
+      this.weapon = new Weapon();
+    }
   }
 
   populateForm(): void{
@@ -78,7 +82,11 @@ export class WeaponDetailComponent implements OnInit {
     this.weapon!.degats = this.weaponForm.value.degats;
     this.weapon!.pv = this.weaponForm.value.pv;
 
-    this.weaponService.updateWeapon(this.weapon!);
+    if(this.weapon?.id != undefined) {
+      this.weaponService.updateWeapon(this.weapon!);
+    }else{
+      this.weaponService.addWeapon(this.weapon!);
+    }
   }
 
   onSubmit():void {

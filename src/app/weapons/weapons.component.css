@@ -1,4 +1,4 @@
-/* HeroesComponent's private CSS styles */
+/* WeaponsComponent's private CSS styles */
 .container{
   width: 100%;
   max-width: 100%;
@@ -30,5 +30,11 @@ table{
 
 .mat-column-actions a{
   margin: 0px 7px;
+}
+
+.aside{
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
 }
 

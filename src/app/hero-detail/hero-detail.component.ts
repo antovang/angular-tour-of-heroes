@@ -39,7 +39,11 @@ export class HeroDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getHero();
+    if(this.route.snapshot.paramMap.has('id')){
+      this.getHero();
+    }else{
+      this.hero = new Hero();
+    }
   }
 
   populateForm(): void{
@@ -58,7 +62,6 @@ export class HeroDetailComponent implements OnInit {
       .subscribe(hero => {
         this.hero = hero;
         this.populateForm();
-        console.log(this.hero);
       });
   }
 
@@ -81,7 +84,11 @@ export class HeroDetailComponent implements OnInit {
     this.hero!.degats = this.heroForm.value.degats;
     this.hero!.pv = this.heroForm.value.pv;
 
-    this.heroService.updateHero(this.hero!);
+    if(this.hero?.id != undefined){
+      this.heroService.updateHero(this.hero!);
+    }else{
+      this.heroService.addHero(this.hero!);
+    }
   }
 
   onSubmit():void {

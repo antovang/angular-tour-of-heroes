@@ -56,12 +56,12 @@
       </th>
       <td mat-cell *matCellDef="let element">
         <div class="button-container">
-          <a routerLink="/detail/{{element.id}}">
+          <a routerLink="/detailHero/{{element.id}}">
             <button mat-stroked-button color="primary">
               <mat-icon>edit</mat-icon>
             </button>
           </a>
-          <a routerLink="/detail/{{element.id}}">
+          <a routerLink="/detailHero/{{element.id}}">
             <button mat-stroked-button color="warn">
               <mat-icon>delete</mat-icon>
             </button>
@@ -73,4 +73,12 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+
+  <div class="aside">
+    <a routerLink="/newHero/">
+      <button mat-fab color="primary">
+        <mat-icon>add</mat-icon>
+      </button>
+    </a>
+  </div>
 </div>

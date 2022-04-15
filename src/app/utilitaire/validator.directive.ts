@@ -21,6 +21,6 @@ export function maxScoreWeapon(): ValidatorFn {
     const pv = parseInt(control.value.pv);
     const sum = attaque + esquive + pv + degats;
 
-    return sum != 0 ? {maxScoreHero: true} : null;
+    return sum != 0 ? {maxScoreWeapon: true} : null;
   };
 }

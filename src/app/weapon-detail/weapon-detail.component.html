@@ -23,14 +23,17 @@
         <input id="weapon-pv" formControlName="pv" placeholder="Points de vie"/>
       </div>
       <br />
+      <div *ngIf="weaponForm.errors?.['maxScoreWeapon'] || !weaponForm.valid" class="popup">
+        <img src="/assets/img/error.png" style="width: 200px">
+      </div>
       <div class="submit">
         <button type="submit" [disabled]="!weaponForm.valid" mat-raised-button color="primary">Enregistrer</button>
       </div>
     </form>
   </div>
 
-  <div class="flex-item weapon" *ngIf="weapon?.image">
-    <img src="{{weapon?.image}}">
+  <div class="flex-item weapon">
+    <img src="{{weapon?.image}}" *ngIf="weapon?.image">
   </div>
 
   <div class="aside">
