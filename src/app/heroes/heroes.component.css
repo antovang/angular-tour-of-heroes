@@ -1,16 +1,26 @@
 /* HeroesComponent's private CSS styles */
+.container{
+  width: 100%;
+  max-width: 100%;
+  height: calc(100% - 100px);
+  max-height: calc(100% - 100px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50px;
+}
+
 table{
   width: 1400px;
   max-width: 95%;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
 }
 
 .mat-column-id, .mat-column-esquive, .mat-column-attaque, .mat-column-pv, .mat-column-degats{
   width: 10%;
+}
+
+.button-container{
+  display: flex;
 }
 
 .mat-column-actions{

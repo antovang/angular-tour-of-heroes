@@ -24,7 +24,7 @@
         <input id="hero-pv" formControlName="pv" placeholder="Points de vie"/>
       </div>
       <div>
-        <div *ngIf="hero.weapon.id != '0'" class="weapon">
+        <div *ngIf="hero.weapon != undefined" class="weapon">
           <img src="{{hero.weapon.image}}">
         </div>
 
@@ -34,7 +34,7 @@
         </button>
       </div>
       <br>
-      <div *ngIf="heroForm.errors?.['maxScoreHero']" class="popup">
+      <div *ngIf="!heroForm.valid" class="popup">
         <img src="/assets/img/error.png" style="width: 200px">
       </div>
       <div class="submit">

@@ -165,17 +165,19 @@ export class HeroService {
       hero = new Hero().fromJSON(data);
       hero.id = id;
 
-      this.weaponService.getWeapon(hero.weaponId)
-        .pipe(first())
-        .subscribe(weapon => {
-          if(hero != undefined)
-            if(weapon != undefined && weapon.id != '0'){
+      if(hero.weaponId != ''){
+        this.weaponService.getWeapon(hero.weaponId)
+          .pipe(first())
+          .subscribe(weapon => {
+            if(hero != undefined){
               hero.weapon = weapon;
             }
-        });
+          });
+      }else{
+        hero.weaponId = undefined;
+        hero.weapon = undefined;
+      }
     }
-
-    // Use spread operator to add the id to the document data
     return hero;
   }
 }

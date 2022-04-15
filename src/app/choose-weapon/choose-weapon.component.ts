@@ -28,15 +28,26 @@ export class ChooseWeaponComponent implements OnInit {
 
   getWeapons(): void {
     this.weaponService.getWeapons().pipe(first())
-      .subscribe(weapons => this.weapons = weapons);
+      .subscribe(weapons => {
+        this.weapons = weapons;
+        let emptyWeapon = new Weapon();
+        emptyWeapon.id = '-1';
+        emptyWeapon.image = '/assets/img/empty.png';
+        this.weapons.push(emptyWeapon);
+        this.weapons.sort((a,b) => +a.id - +b.id)
+      });
   }
 
   chooseWeapon(weapon : Weapon) : void{
     this.selectedWeapon = weapon;
     if(this.hero) {
-      this.hero.weapon = this.selectedWeapon;
-      this.hero.weaponId = this.selectedWeapon.id;
+      if(this.selectedWeapon.id != '-1'){
+        this.hero.weapon = this.selectedWeapon;
+        this.hero.weaponId = this.selectedWeapon.id;
+      }else{
+        this.hero.weapon = undefined;
+        this.hero.weaponId = undefined;
+      }
     }
   }
-
 }

@@ -22,10 +22,10 @@ export class HeroDetailComponent implements OnInit {
   //On crée un formGroup nous permettant d'avoir des formulaires réactifs utilisant des validators pour chaque champ
   heroForm = new FormGroup({
     name: new FormControl('', [Validators.required,Validators.minLength(1)]),
-    attaque: new FormControl('',[Validators.required,Validators.min(0)]),
-    esquive: new FormControl('',[Validators.required,Validators.min(0)]),
-    degats: new FormControl('',[Validators.required,Validators.min(0)]),
-    pv: new FormControl('',[Validators.required,Validators.min(0)]),
+    attaque: new FormControl('',[Validators.required,Validators.min(1)]),
+    esquive: new FormControl('',[Validators.required,Validators.min(1)]),
+    degats: new FormControl('',[Validators.required,Validators.min(1)]),
+    pv: new FormControl('',[Validators.required,Validators.min(1)]),
   },
   {
     //On applique un custom validator pour contrôler le nombre de points
@@ -58,6 +58,7 @@ export class HeroDetailComponent implements OnInit {
       .subscribe(hero => {
         this.hero = hero;
         this.populateForm();
+        console.log(this.hero);
       });
   }
 

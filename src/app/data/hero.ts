@@ -77,7 +77,7 @@ export class Hero extends Serializable  {
     return <string>this._weaponId;
   }
 
-  set weaponId(value: string) {
+  set weaponId(value: string | undefined) {
     this._weaponId = value;
   }
 
@@ -96,7 +96,7 @@ export class Hero extends Serializable  {
       _esquive: this.esquive,
       _degats: this.degats,
       _pv: this.pv,
-      _weaponId : this.weaponId ?? '0',
+      _weaponId : this.weaponId ?? '',
       _image : this.image
     });
   }
