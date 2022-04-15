@@ -169,7 +169,9 @@ export class HeroService {
         .pipe(first())
         .subscribe(weapon => {
           if(hero != undefined)
-            hero.weapon = weapon;
+            if(weapon != undefined && weapon.id != '0'){
+              hero.weapon = weapon;
+            }
         });
     }
 

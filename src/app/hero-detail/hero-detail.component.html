@@ -24,7 +24,7 @@
         <input id="hero-pv" formControlName="pv" placeholder="Points de vie"/>
       </div>
       <div>
-        <div *ngIf="hero.weapon != undefined" class="weapon">
+        <div *ngIf="hero.weapon.id != '0'" class="weapon">
           <img src="{{hero.weapon.image}}">
         </div>
 

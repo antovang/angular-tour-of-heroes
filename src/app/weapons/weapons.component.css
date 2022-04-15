@@ -9,7 +9,15 @@ table{
   transform: translate(-50%, -50%);
 }
 
+.mat-column-id, .mat-column-esquive, .mat-column-attaque, .mat-column-pv, .mat-column-degats{
+  width: 10%;
+}
+
+.mat-column-actions{
+  width: 10%;
+  text-align: end;
+}
+
 .mat-column-actions a{
   margin: 0px 7px;
 }
-
