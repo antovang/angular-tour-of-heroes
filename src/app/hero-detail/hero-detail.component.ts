@@ -99,6 +99,13 @@ export class HeroDetailComponent implements OnInit {
     this.goBack();
   }
 
+  deleteWeapon(): void{
+    if(this.hero){
+      this.hero.weapon = undefined;
+      this.hero.weaponId = undefined;
+    }
+  }
+
   goBack(): void {
     this.location.back();
   }

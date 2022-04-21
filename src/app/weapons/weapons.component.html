@@ -2,14 +2,6 @@
   <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)"
          class="mat-elevation-z8">
 
-    <!-- Position Column -->
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by id">
-        id
-      </th>
-      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-    </ng-container>
-
     <!-- Name Column -->
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
@@ -61,11 +53,9 @@
               <mat-icon>edit</mat-icon>
             </button>
           </a>
-          <a routerLink="/detailWeapon/{{element.id}}">
-            <button mat-stroked-button color="warn">
-              <mat-icon>delete</mat-icon>
-            </button>
-          </a>
+          <button mat-stroked-button color="warn" (click)="deleteWeapon(element)">
+            <mat-icon>delete</mat-icon>
+          </button>
         </div>
       </td>
     </ng-container>

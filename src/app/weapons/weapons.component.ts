@@ -17,7 +17,7 @@ export class WeaponsComponent implements OnInit {
   weapons: Weapon[] = [];
   selectedWeapon?: Weapon;
   subscription? : Subscription;
-  displayedColumns: string[] = ['id','name','attaque','esquive','pv','degats','actions'];
+  displayedColumns: string[] = ['name','attaque','esquive','pv','degats','actions'];
   dataSource!: MatTableDataSource<Weapon>;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -42,6 +42,10 @@ export class WeaponsComponent implements OnInit {
 
   onSelect(weapon: Weapon): void {
     this.selectedWeapon = weapon;
+  }
+
+  deleteWeapon(weapon: Weapon): void{
+    this.weaponService.deleteWeapon(weapon);
   }
 
   /** Announce the change in sort state for assistive technology. */

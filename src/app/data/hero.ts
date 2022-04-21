@@ -14,7 +14,6 @@ export class Hero extends Serializable  {
 
   constructor() {
     super();
-    this.weapon = new Weapon();
   }
 
   get id(): string {

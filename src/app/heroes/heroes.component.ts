@@ -15,7 +15,7 @@ export class HeroesComponent implements OnInit {
   heroes: Hero[] = [];
   selectedHero?: Hero;
   subscription? : Subscription;
-  displayedColumns: string[] = ['id','name','attaque','esquive','pv','degats','actions'];
+  displayedColumns: string[] = ['name','attaque','esquive','pv','degats','actions'];
   dataSource!: MatTableDataSource<Hero>;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -42,10 +42,14 @@ export class HeroesComponent implements OnInit {
     this.selectedHero = hero;
   }
 
+  deleteHero(hero: Hero): void {
+    this.heroService.deleteHero(hero);
+  }
+
   /** Announce the change in sort state for assistive technology. */
   announceSortChange(sortState: Sort) {
     if (sortState.direction) {
-      this._liveAnnouncer.announce(`Sorted ${sortState.direction} ending`);
+      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
     } else {
       this._liveAnnouncer.announce('Sorting cleared');
     }
