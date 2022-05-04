@@ -38,6 +38,7 @@ export class HeroDetailComponent implements OnInit {
     private location: Location
   ) {}
 
+  // s'il y a un id dans l'URL on récupère un hero existant, sinon on crée un hero vide
   ngOnInit(): void {
     if(this.route.snapshot.paramMap.has('id')){
       this.getHero();
@@ -46,6 +47,7 @@ export class HeroDetailComponent implements OnInit {
     }
   }
 
+  // méthode servant à remplir le formulaire
   populateForm(): void{
     this.heroForm.setValue({
       name: this.hero?.name,
@@ -60,6 +62,7 @@ export class HeroDetailComponent implements OnInit {
     const id = String(this.route.snapshot.paramMap.get('id'));
     this.heroService.getHero(id).pipe(first())
       .subscribe(hero => {
+        // On initialise l'attribut hero et on rempli le formulaire
         this.hero = hero;
         this.populateForm();
       });
@@ -84,6 +87,7 @@ export class HeroDetailComponent implements OnInit {
     this.hero!.degats = this.heroForm.value.degats;
     this.hero!.pv = this.heroForm.value.pv;
 
+    // S'il n'y a pas de ID dans l'url on crée un nouveau hero
     if(this.hero?.id != undefined){
       this.heroService.updateHero(this.hero!);
     }else{
