@@ -1,4 +1,4 @@
-.weapons {
+.avatars {
   margin: 0 0 2em 0;
   list-style-type: none;
   padding: 0;
@@ -8,16 +8,16 @@
   flex-wrap: wrap;
   border: 5px solid white;
 }
-.weapons li {
+.avatars li {
   max-width: fit-content;
   cursor: pointer;
 }
 
-.weapons li:hover {
+.avatars li:hover {
   left: .1em;
 }
 
-.weapons div {
+.avatars div {
   color: #333;
   text-decoration: none;
   background-color: white;
@@ -31,17 +31,17 @@
   max-height: 150px;
 }
 
-.weapons div img{
-  width: 100%;
-  max-width: 100%;
+.avatars div img{
+  height: 100%;
+  max-height: 100%;
 }
 
-.weapons div:hover {
+.avatars div:hover {
   color: #2c3a41;
   background-color: #e6e6e6;
 }
 
-.weapons div:active {
+.avatars div:active {
   background-color: #525252;
   color: #fafafa;
 }

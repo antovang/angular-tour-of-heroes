@@ -41,16 +41,18 @@ export class WeaponDetailComponent implements OnInit {
       this.getWeapon();
     }else{
       this.weapon = new Weapon();
+      // On remplit le formulaire avec des données par défaut
+      this.populateForm();
     }
   }
 
   populateForm(): void{
     this.weaponForm.setValue({
-      name: this.weapon?.name,
-      attaque: this.weapon?.attaque,
-      esquive: this.weapon?.esquive,
-      degats: this.weapon?.degats,
-      pv: this.weapon?.pv,
+      name: this.weapon?.name ?? '',
+      attaque: this.weapon?.attaque ?? '0',
+      esquive: this.weapon?.esquive ?? '0',
+      degats: this.weapon?.degats ?? '0',
+      pv: this.weapon?.pv ?? '0',
     });
   }
 

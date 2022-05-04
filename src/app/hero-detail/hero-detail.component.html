@@ -36,21 +36,31 @@
         </div>
       </div>
       <br>
-      <div *ngIf="heroForm.errors?.['maxScoreHero'] || !heroForm.valid" class="popup">
-        <img src="/assets/img/error.png" style="width: 200px">
-      </div>
       <div class="submit">
         <button type="button" mat-raised-button
+                [disabled]="choosingWeapon"
+                (click)="choosingAvatar = !choosingAvatar">
+          Changer avatar
+        </button>
+        <button type="button" mat-raised-button color="primary"
+                [disabled]="choosingAvatar"
                 (click)="choosingWeapon = !choosingWeapon">
           Équiper une arme
         </button>
-        <button type="submit" [disabled]="!heroForm.valid" mat-raised-button color="primary">Enregistrer</button>
+        <button type="submit" [disabled]="!heroForm.valid" mat-raised-button>
+          <mat-icon>save</mat-icon>
+          Enregistrer
+        </button>
       </div>
     </form>
   </div>
 
   <div class="flex-item personnage">
     <img src="{{hero?.image}}" *ngIf="hero?.image">
+  </div>
+
+  <div *ngIf="choosingAvatar" class="avatarContainer popup">
+    <app-choose-image [hero]=hero (click)="choosingAvatar = !choosingAvatar"></app-choose-image>
   </div>
 
   <div *ngIf="choosingWeapon" class="weaponContainer popup">
@@ -62,7 +72,7 @@
       <span>{{soldeHero}}</span>
     </div>
     <div>
-      <img src="/assets/img/vbucks.png">
+      <img src="assets/img/vbucks.png">
     </div>
   </div>
 </div>

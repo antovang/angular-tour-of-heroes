@@ -21,6 +21,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatTableModule} from "@angular/material/table";
 import {MatSortModule} from "@angular/material/sort";
 import {MatIconModule} from "@angular/material/icon";
+import { ChooseImageComponent } from './choose-image/choose-image.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import {MatIconModule} from "@angular/material/icon";
     DashboardComponent,
     WeaponsComponent,
     WeaponDetailComponent,
-    ChooseWeaponComponent
+    ChooseWeaponComponent,
+    ChooseImageComponent
   ],
   imports: [
     BrowserModule,

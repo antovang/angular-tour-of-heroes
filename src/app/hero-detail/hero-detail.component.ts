@@ -16,7 +16,8 @@ import {Location} from "@angular/common";
 export class HeroDetailComponent implements OnInit {
 
   @Input() hero?: Hero;
-  public choosingWeapon? : boolean;
+  public choosingWeapon? : boolean = false;
+  public choosingAvatar? : boolean = false;
   public static SOLDE = 40;
 
   //On crée un formGroup nous permettant d'avoir des formulaires réactifs utilisant des validators pour chaque champ
@@ -44,17 +45,19 @@ export class HeroDetailComponent implements OnInit {
       this.getHero();
     }else{
       this.hero = new Hero();
+      // On remplit le formulaire avec des données par défaut
+      this.populateForm();
     }
   }
 
   // méthode servant à remplir le formulaire
   populateForm(): void{
     this.heroForm.setValue({
-      name: this.hero?.name,
-      attaque: this.hero?.attaque,
-      esquive: this.hero?.esquive,
-      degats: this.hero?.degats,
-      pv: this.hero?.pv
+      name: this.hero?.name ?? '',
+      attaque: this.hero?.attaque ?? '1',
+      esquive: this.hero?.esquive ?? '1',
+      degats: this.hero?.degats ?? '1',
+      pv: this.hero?.pv ?? '1'
     });
   }
 

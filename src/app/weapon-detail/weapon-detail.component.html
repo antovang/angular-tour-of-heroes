@@ -23,11 +23,11 @@
         <input id="weapon-pv" formControlName="pv" placeholder="Points de vie"/>
       </div>
       <br />
-      <div *ngIf="weaponForm.errors?.['maxScoreWeapon'] || !weaponForm.valid" class="popup">
-        <img src="/assets/img/error.png" style="width: 200px">
-      </div>
       <div class="submit">
-        <button type="submit" [disabled]="!weaponForm.valid" mat-raised-button color="primary">Enregistrer</button>
+        <button type="submit" [disabled]="!weaponForm.valid" mat-raised-button color="primary">
+          <mat-icon>save</mat-icon>
+          Enregistrer
+        </button>
       </div>
     </form>
   </div>
@@ -41,7 +41,7 @@
       <span>{{soldeWeapon}}</span>
     </div>
     <div>
-      <img src="/assets/img/vbucks.png">
+      <img src="assets/img/vbucks.png">
     </div>
   </div>
 </div>
