@@ -16,6 +16,7 @@ import { first } from 'rxjs';
 export class WeaponDetailComponent implements OnInit {
 
   @Input() weapon?: Weapon;
+  public choosingWeapon? : boolean = false;
 
   //On crée un formGroup nous permettant d'avoir de formulaire réactifs utilisant des validators pour chaque champ
   weaponForm = new FormGroup({

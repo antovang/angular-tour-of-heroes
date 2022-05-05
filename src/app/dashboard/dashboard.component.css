@@ -1,50 +1,38 @@
-/* DashboardComponent's private CSS styles */
-
 h2 {
   text-align: center;
+  font-variant: all-petite-caps;
 }
 
-.heroes-menu {
-  padding: 0;
+.heroes-menu, .weapons-menu {
   margin: auto;
-  max-width: 1000px;
-
-  /* flexbox */
+  min-width: 100%;
+  max-width: 100%;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-content: flex-start;
-  align-items: flex-start;
+  justify-content: center;
 }
 
-a {
-  background-color: #3f525c;
-  border-radius: 2px;
-  padding: 1rem;
-  font-size: 1.2rem;
-  text-decoration: none;
-  display: inline-block;
-  color: #fff;
+.res-container{
+  background-color: #fff;
+  padding: 20px;
   text-align: center;
-  width: 100%;
-  min-width: 70px;
-  margin: .5rem auto;
-  box-sizing: border-box;
-
-  /* flexbox */
-  order: 0;
-  flex: 0 1 auto;
-  align-self: auto;
+  border-radius: 6px;
+  margin: 0px 20px;
+  width: 200px;
+  max-width: 200px;
+  height: 200px;
+  max-height: 200px;
 }
 
-@media (min-width: 600px) {
-  a {
-    width: 18%;
-    box-sizing: content-box;
-  }
+.res-container:hover{
+  color: #2c3a41;
+  background-color: #e6e6e6;
 }
 
-a:hover {
-  background-color: #000;
+.res-container img{
+  height: 100%;
+  max-height: 100%;
+  width: auto;
 }
+
+
+

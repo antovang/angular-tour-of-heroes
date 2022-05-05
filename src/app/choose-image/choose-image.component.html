@@ -1,7 +1,7 @@
 <ul class="avatars">
-  <li *ngFor="let avatar of avatars">
-    <div (click)="chooseAvatar(avatar)" >
-      <img src="{{avatar.image}}">
+  <li *ngFor="let res of resources">
+    <div (click)="chooseResource(res)" >
+      <img src="{{res.image}}">
     </div>
   </li>
 </ul>

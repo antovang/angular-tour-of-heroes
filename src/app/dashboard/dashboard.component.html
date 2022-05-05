@@ -2,6 +2,20 @@
 <div class="heroes-menu">
   <a *ngFor="let hero of heroes"
      routerLink="/detailHero/{{hero.id}}">
-    {{hero.name}}
+    <div class="res-container">
+      <img src="{{hero.image}}">
+    </div>
+  </a>
+</div>
+
+<br/>
+
+<h2>Top Weapons</h2>
+<div class="weapons-menu">
+  <a *ngFor="let weapon of weapons"
+     routerLink="/detailWeapon/{{weapon.id}}">
+    <div class="res-container">
+      <img src="{{weapon.image}}">
+    </div>
   </a>
 </div>
